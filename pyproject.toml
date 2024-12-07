@@ -1,0 +1,18 @@
+[project]
+name = "emograph"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "yamatakeru", email = "yamato_y@me.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "emoji>=2.14.0",
+    "pillow>=11.0.0",
+    "pyyaml>=6.0.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
