@@ -25,7 +25,9 @@ class Builder:
         x, y = element['position']['x'], element['position']['y']
         size = element.get('size', 1.0)
         rotation = element.get('rotation', 0)
-        font = self.get_font(size=int(fonts['emoji'].size * size))
+        #font = self.get_font(size=int(fonts['emoji'].size * size))
+        font_path = "./fonts/Noto-COLRv1-emojicompat.ttf"
+        font = ImageFont.truetype(font_path, 109, encoding='unic')
 
         # テキスト画像のサイズを計算
         bbox = draw.textbbox((0, 0), emj, font=font)
@@ -40,7 +42,7 @@ class Builder:
             # テキストを中央に配置
             text_x = (diagonal - text_width) / 2
             text_y = (diagonal - text_height) / 2
-            text_draw.text((text_x, text_y), emj, font=font, fill="black")
+            text_draw.text((text_x, text_y), emj, font=font, fill="black", embedded_color=True)
             text_image = text_image.rotate(rotation, resample=Image.BICUBIC, expand=True)
             # 回転後の画像を元のサイズの画像に貼り付け
             final_image = Image.new('RGBA', image.size, (255,255,255,0))
@@ -51,7 +53,7 @@ class Builder:
         else:
             text_image = Image.new('RGBA', image.size, (255,255,255,0))
             text_draw = ImageDraw.Draw(text_image)
-            text_draw.text((x, y), emj, font=font, fill="black")
+            text_draw.text((x, y), emj, font=font, fill="black", embedded_color=True)
 
         image = Image.alpha_composite(image, text_image)
         
