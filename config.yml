@@ -9,14 +9,14 @@ image:
       position:
         x: 100
         y: 150
-      size: 2.0
-      rotation: 0
+      size: 5.0
+      rotation: 64
       caption:
         content: "笑顔"
         position:
           x: 100
           y: 220
-        font_size: 16
+        font_size: 20
         color: "#000000"
     - id: "emoji2"
       type: "emoji"
