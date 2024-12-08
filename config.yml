@@ -2,6 +2,8 @@ image:
   width: 800
   height: 600
   background_color: "#FFFFFF"
+  text_font: "arial"
+  emoji_font: "NotoColorEmoji"
   elements:
     - id: "emoji1"
       type: "emoji"
@@ -9,7 +11,7 @@ image:
       position:
         x: 100
         y: 150
-      size: 5.0
+      size: 256
       rotation: 64
       caption:
         content: "笑顔"
@@ -24,7 +26,7 @@ image:
       position:
         x: 300
         y: 200
-      size: 1.5
+      size: 512
       rotation: 45
       caption:
         content: "ロケット"
