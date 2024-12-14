@@ -14,7 +14,11 @@ FONTS_DATA = {
     "Noto-COLRv1": {
         "path": "./fonts/Noto-COLRv1.ttf",
         "size": 109
-    }
+    },
+    "seguiemj": {
+        "path": "./fonts/seguiemj.ttf",
+        "size": 109
+    },
 }
 
 
@@ -33,7 +37,7 @@ class Manager:
         layout_engine: str | None = None
     ) -> ImageFont.FreeTypeFont:
         font_info = self.get_font_info(font_name)
-        font_path = font_info.path #"C:\\Windows\\Fonts\\seguiemj.ttf"
+        font_path = font_info.path
         fontsize = font_info.size if size is None else size
         try:
             return ImageFont.truetype(
