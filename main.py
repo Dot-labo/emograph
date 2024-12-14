@@ -20,7 +20,7 @@ if __name__ == "__main__":
         help="configを記述したyamlファイル",
     )
     parser.add_argument(
-        '--output_name',
+        '--output-name',
         required=False,
         help="出力画像ファイル（例: output.png）",
     )
