@@ -39,7 +39,7 @@ image:
       start_id: "emoji1"
       end_id: "emoji2"
       color: "#FF0000"
-      thickness: 2
+      thickness: 5
     - type: "text"
       content: "理解を助けるために"
       position:
