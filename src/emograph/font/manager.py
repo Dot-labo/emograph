@@ -1,8 +1,9 @@
+import platform
 from PIL import ImageFont
 from .type import FontData
 
 
-FONTS_DATA = {
+LOCAL_FONTS_DATA = {
     "arial": {
         "path": "arial.ttf",
         "size": 24
@@ -24,10 +25,30 @@ FONTS_DATA = {
 
 class Manager:
     def get_font_info(self, font_name: str) -> FontData:
+        # ローカルフォント情報を取得
+        font_info = self._fetch_local_font_info(font_name)
+        if font_info is not None:
+            return font_info
+
+        # もしローカルにフォントがなければ、プラットフォームのフォント情報を取得
+        font_info = self._fetch_platform_font_info(font_name)
+        if font_info is not None:
+            return font_info
+
+        # フォントが見つからない場合はエラー
+        raise ValueError(f"Unsupported font: {font_name}")
+
+    def _fetch_platform_font_info(self, font_name: str) -> FontData | None:
+        platform_name = platform.system()
+        #TODO: Not implemented yet
+        return None
+
+    def _fetch_local_font_info(self, font_name: str) -> FontData:
         try:
-            return FontData(**FONTS_DATA[font_name])
+            return FontData(**LOCAL_FONTS_DATA[font_name])
         except KeyError:
-            raise ValueError(f"Font '{font_name}' not found in the list of available fonts.")
+            print(f"Font not found in local: {font_name}")
+            return None
 
     def get_font(
         self,
