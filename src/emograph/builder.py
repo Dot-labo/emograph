@@ -4,7 +4,6 @@ import yaml
 from PIL import Image, ImageDraw, ImageFont
 import emoji
 from .font.manager import Manager as FontManager
-from .font.type import FontData
 
 
 class Builder:
