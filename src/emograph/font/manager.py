@@ -4,6 +4,10 @@ from .type import FontData
 
 
 LOCAL_FONTS_DATA = {
+    "JKG-M": {
+        "path": "JKG-M_3.ttf",
+        "size": 109
+    },
     "arial": {
         "path": "arial.ttf",
         "size": 24
@@ -40,8 +44,24 @@ class Manager:
 
     def _fetch_platform_font_info(self, font_name: str) -> FontData | None:
         platform_name = platform.system()
-        #TODO: Not implemented yet
-        return None
+        match platform_name:
+            case "Darwin" | "macOS":
+                return FontData(
+                    path=f"./fonts/{font_name}.ttf",
+                    size=109
+                )
+            case "Windows":
+                return FontData(
+                    path=f"./fonts/{font_name}.ttf",
+                    size=109
+                )
+            case "Linux":
+                return FontData(
+                    path=f"./fonts/{font_name}.ttf",
+                    size=109
+                )
+            case _:
+                return None
 
     def _fetch_local_font_info(self, font_name: str) -> FontData:
         try:

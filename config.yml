@@ -2,7 +2,7 @@ image:
   width: 800
   height: 600
   background_color: "#FFFFFF"
-  text_font: "arial"
+  text_font: "JKG-M"
   emoji_font: "seguiemj"
   elements:
     - id: "emoji1"
