@@ -3,7 +3,6 @@ import math
 import yaml
 from PIL import Image, ImageDraw, ImageFont
 import emoji
-from .font.manager import Manager as FontManager
 
 
 class Builder:
@@ -11,27 +10,12 @@ class Builder:
         with open(file_path, 'r', encoding='utf-8') as file:
             return yaml.safe_load(file)
 
-    def get_font(
-        self,
-        font_name: str,
-        size: int | None = None,
-        encoding: str = "",
-        layout_engine: str | None = None
-    ) -> ImageFont.FreeTypeFont:
-        font = FontManager().get_font(
-            font_name=font_name,
-            size=size,
-            encoding=encoding,
-            layout_engine=layout_engine
-        )
-        return font
-
     def draw_emoji(
         self,
         image: Image.Image,
         element: dict,
-        emoji_font: str,
-        text_font: str
+        emoji_font_path: str,
+        text_font_path: str
     ) -> Image.Image:
         # 透明な新規レイヤーを作成
         text_image = Image.new('RGBA', image.size, (255,255,255,0))
@@ -39,13 +23,11 @@ class Builder:
         
         emj = emoji.emojize(element['emoji'])
         x, y = element['position']['x'], element['position']['y']
-        size = element.get('size', 1.0)
+        font_path = element.get('font_path', emoji_font_path)
+        font_size = element.get('size', 1.0)
         rotation = element.get('rotation', 0)
-        font = self.get_font(
-            element.get('font', emoji_font),
-            size=size,
-            encoding='unic'
-        )
+
+        font = ImageFont.truetype(font_path, font_size)
 
         # テキスト画像のサイズを計算
         bbox = text_draw.textbbox((0, 0), emj, font=font)
@@ -91,7 +73,9 @@ class Builder:
             caption_draw = ImageDraw.Draw(caption_image)
 
             cap = element['caption']
-            cap_font = self.get_font(cap.get('font', text_font), cap.get('font_size', 16))
+            font_path = element.get('font_path', text_font_path)
+            font_size = element.get('font_size', 24)
+            cap_font = ImageFont.truetype(font_path, font_size)
             caption_draw.text(
                 xy=(cap['position']['x'], cap['position']['y']),
                 text=cap['content'],
@@ -147,16 +131,15 @@ class Builder:
         self,
         image: Image.Image,
         element: dict,
-        text_font: str
+        text_font_path: str
     ) -> Image.Image:
         # 透明な新規レイヤーを作成
         text_image = Image.new('RGBA', image.size, (255,255,255,0))
         text_draw = ImageDraw.Draw(text_image)
 
-        font = self.get_font(
-            element.get("font", text_font),
-            element.get('font_size', 24)
-        )
+        font_path = element.get('font_path', text_font_path)
+        font_size = element.get('font_size', 24)
+        font = ImageFont.truetype(font_path, font_size)
 
         text_draw.text(
             xy=(element['position']['x'], element['position']['y']),
@@ -170,17 +153,17 @@ class Builder:
     def generate_image(self, yaml_data: dict, output_path: str) -> None:
         spec = yaml_data['image']
         image = Image.new('RGBA', (spec['width'], spec['height']), spec.get('background_color', "#FFFFFF"))
-        text_font = spec.get('text_font', 'arial')
-        emoji_font = spec.get('emoji_font', 'NotoColorEmoji')
+        text_font_path = spec.get('text_font_path', 'arial')
+        emoji_font_path = spec.get('emoji_font_path', 'NotoColorEmoji')
         elements_dict = {e['id']: e for e in spec['elements'] if 'id' in e}
 
         for element in spec['elements']:
             if element['type'] == 'emoji':
-                image = self.draw_emoji(image, element, emoji_font, text_font)
+                image = self.draw_emoji(image, element, emoji_font_path, text_font_path)
             elif element['type'] == 'arrow':
                 image = self.draw_arrow(image, element, elements_dict)
             elif element['type'] == 'text':
-                image = self.draw_text(image, element, text_font)
+                image = self.draw_text(image, element, text_font_path)
             else:
                 print(f"未対応の要素タイプ: {element['type']}")
 

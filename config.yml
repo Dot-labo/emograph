@@ -2,8 +2,8 @@ image:
   width: 800
   height: 600
   background_color: "#FFFFFF"
-  text_font: "JKG-M"
-  emoji_font: "seguiemj"
+  text_font_path: "fonts/JKG-M_3.ttf"
+  emoji_font_path: "fonts/seguiemj.ttf"
   elements:
     - id: "emoji1"
       type: "emoji"
