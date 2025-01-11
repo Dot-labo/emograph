@@ -2,6 +2,7 @@ image:
   width: 800
   height: 600
   background_color: "#FFFFFF"
+  background_alpha: 255
   text_font_path: "fonts/JKG-M_3.ttf"
   emoji_font_path: "fonts/seguiemj.ttf"
   elements:
@@ -9,10 +10,10 @@ image:
       type: "emoji"
       emoji: "😊"
       position:
-        x: 100
-        y: 150
+        x: 0
+        y: 0
       size: 256
-      rotation: 109
+      rotation: 0
       caption:
         content: "笑顔"
         position:
