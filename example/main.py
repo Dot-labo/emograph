@@ -1,8 +1,13 @@
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.emograph import Builder
 
 
-def main(yaml_file: str, output_image_name: str, output_dir = "./output"):
+def main(yaml_file: str, output_image_name: str, output_dir = "./"):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
     builder = Builder()
 
     yaml_data = builder.load_yaml(yaml_file)
