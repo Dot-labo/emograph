@@ -1,0 +1,49 @@
+image:
+  width: 800
+  height: 600
+  background_color: "#FFFFFF"
+  text_font_path: "fonts/JKG-M_3.ttf"
+  emoji_font_path: "fonts/seguiemj.ttf"
+  elements:
+    - id: "emoji1"
+      type: "emoji"
+      emoji: "😊"
+      position:
+        x: 100
+        y: 150
+      size: 256
+      rotation: 109
+      caption:
+        content: "笑顔"
+        position:
+          x: 100
+          y: 220
+        font_size: 20
+        color: "#000000"
+    - id: "emoji2"
+      type: "emoji"
+      emoji: "🚀"
+      position:
+        x: 300
+        y: 200
+      size: 128
+      rotation: 45
+      caption:
+        content: "ロケット"
+        position:
+          x: 300
+          y: 270
+        font_size: 16
+        color: "#000000"
+    - type: "arrow"
+      start_id: "emoji1"
+      end_id: "emoji2"
+      color: "#FF0000"
+      thickness: 5
+    - type: "text"
+      content: "理解を助けるために"
+      position:
+        x: 400
+        y: 100
+      font_size: 24
+      color: "#000000"
