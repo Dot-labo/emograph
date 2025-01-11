@@ -74,10 +74,10 @@ class Builder:
         return result
 
     def draw_shapes(self, image: Image.Image, element: dict, text_font_path: str) -> Image.Image:
-        if element['shape'] == 'circle':
-            shape_image = Image.new('RGBA', image.size, (255,255,255,0))
-            draw = ImageDraw.Draw(shape_image)
+        shape_image = Image.new('RGBA', image.size, (255,255,255,0))
+        draw = ImageDraw.Draw(shape_image)
 
+        if element['shape'] == 'circle':
             draw.ellipse(
                 xy=(
                     element['position']['x'],
@@ -85,7 +85,30 @@ class Builder:
                     element['position']['x'] + element['size'],
                     element['position']['y'] + element['size']
                 ),
-                fill=element.get('color', "#000000")
+                outline=element.get('color', "#000000"),
+                width=element.get('thickness', 1)
+            )
+        elif element['shape'] == 'rectangle':  
+            draw.rectangle(
+                xy=(
+                    element['position']['x'],
+                    element['position']['y'],
+                    element['position']['x'] + element['size'],
+                    element['position']['y'] + element['size']
+                ),
+                outline=element.get('color', "#000000"),
+                width=element.get('thickness', 1)
+            )
+        elif element['shape'] == 'line':
+            draw.line(
+                xy=(
+                    element['position']['start']['x'],
+                    element['position']['start']['y'],
+                    element['position']['end']['x'],
+                    element['position']['end']['y']
+                ),
+                fill=element.get('color', "#000000"),
+                width=element.get('thickness', 1)
             )
         else:
             print(f"未対応の形状: {element['shape']}")
