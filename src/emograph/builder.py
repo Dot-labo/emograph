@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import emoji
 from .fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
 
+
 class Builder:
     def load_yaml(self, file_path: str) -> dict:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -99,18 +100,19 @@ class Builder:
         start = elements_dict.get(element['start_id'])
         end = elements_dict.get(element['end_id'])
         if not start or not end:
-            return image
-
-        start = elements_dict.get(element['start_id'])
-        end = elements_dict.get(element['end_id'])
-        if not start or not end:
             print(f"Arrowのstart_idまたはend_idが見つかりません: {element['start_id']}, {element['end_id']}")
             return
 
-        start_x = start['position']['x'] + 12  # 仮の中心
-        start_y = start['position']['y'] + 12
-        end_x = end['position']['x'] + 12
-        end_y = end['position']['y'] + 12
+        if 'position' in element:
+            start_x = element['position']['start']['x'] + 12  # 仮の中心
+            start_y = element['position']['start']['y'] + 12
+            end_x = element['position']['end']['x'] + 12
+            end_y = element['position']['end']['y'] + 12
+        else:
+            start_x = start['position']['x'] + 12  # 仮の中心
+            start_y = start['position']['y'] + 12
+            end_x = end['position']['x'] + 12
+            end_y = end['position']['y'] + 12
         arrow_draw.line(
             xy=[(start_x, start_y), (end_x, end_y)],
             fill=element.get('color', "#000000"),
