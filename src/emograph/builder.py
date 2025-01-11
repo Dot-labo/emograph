@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import emoji
 from .fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
 
+
 class Builder:
     def load_yaml(self, file_path: str) -> dict:
         with open(file_path, 'r', encoding='utf-8') as file:
