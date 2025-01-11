@@ -54,3 +54,18 @@ image:
         y: 100
       font_size: 24
       color: "#000000"
+    - type: "shape"
+      id: "shape1"
+      shape: "circle"
+      position:
+        x: 400
+        y: 100
+      size: 100
+      color: "#FF0000"
+      caption:
+        content: "円"
+        position:
+          x: 400
+          y: 200
+        font_size: 20
+        color: "#000000"
