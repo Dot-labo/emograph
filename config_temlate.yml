@@ -60,14 +60,16 @@ image:
       position:
         x: 400
         y: 100
-      size: 100
+      size:
+        rx: 100
+        ry: 50
       color: "#FF0000"
       thickness: 5
       caption:
         content: "円"
         position:
           x: 400
-          y: 200
+          y: 150
         font_size: 20
         color: "#000000"
     - type: "shape"
@@ -76,14 +78,16 @@ image:
       position:
         x: 400
         y: 300
-      size: 100
+      size:
+        width: 100
+        height: 50
       color: "#00FF00"
       thickness: 2
       caption:
         content: "長方形"
         position:
           x: 400
-          y: 400
+          y: 350
         font_size: 20
         color: "#000000"
     - type: "shape"
