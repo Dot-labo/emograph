@@ -40,6 +40,13 @@ image:
       end_id: "emoji2"
       color: "#FF0000"
       thickness: 5
+      position:
+        start:
+          x: 100
+          y: 150
+        end:
+          x: 300
+          y: 200
     - type: "text"
       content: "理解を助けるために"
       position:
