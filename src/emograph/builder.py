@@ -3,7 +3,7 @@ import math
 import yaml
 from PIL import Image, ImageDraw, ImageFont
 import emoji
-
+from .fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
 
 class Builder:
     def load_yaml(self, file_path: str) -> dict:
@@ -153,8 +153,8 @@ class Builder:
     def generate_image(self, yaml_data: dict, output_path: str) -> None:
         spec = yaml_data['image']
         image = Image.new('RGBA', (spec['width'], spec['height']), spec.get('background_color', "#FFFFFF"))
-        text_font_path = spec.get('text_font_path', 'arial')
-        emoji_font_path = spec.get('emoji_font_path', 'NotoColorEmoji')
+        text_font_path = spec.get('text_font_path', DEFAULT_FONT_PATH)
+        emoji_font_path = spec.get('emoji_font_path', DEFAULT_EMOJI_FONT_PATH)
         elements_dict = {e['id']: e for e in spec['elements'] if 'id' in e}
 
         for element in spec['elements']:
