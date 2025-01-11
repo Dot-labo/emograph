@@ -69,23 +69,73 @@ class Builder:
 
         # キャプションがあれば追加
         if 'caption' in element:
-            # 透明な新規レイヤーを作成
-            caption_image = Image.new('RGBA', image.size, (255,255,255,0))
-            caption_draw = ImageDraw.Draw(caption_image)
-
-            cap = element['caption']
-            font_path = element.get('font_path', text_font_path)
-            font_size = element.get('font_size', 24)
-            cap_font = ImageFont.truetype(font_path, font_size)
-            caption_draw.text(
-                xy=(cap['position']['x'], cap['position']['y']),
-                text=cap['content'],
-                font=cap_font,
-                fill=cap['color']
-            )
-            result = Image.alpha_composite(result, caption_image)
+            result = self._draw_caption(result, element, text_font_path)
 
         return result
+
+    def draw_shapes(self, image: Image.Image, element: dict, text_font_path: str) -> Image.Image:
+        shape_image = Image.new('RGBA', image.size, (255,255,255,0))
+        draw = ImageDraw.Draw(shape_image)
+
+        if element['shape'] == 'circle':
+            draw.ellipse(
+                xy=(
+                    element['position']['x'],
+                    element['position']['y'],
+                    element['position']['x'] + element['size'],
+                    element['position']['y'] + element['size']
+                ),
+                outline=element.get('color', "#000000"),
+                width=element.get('thickness', 1)
+            )
+        elif element['shape'] == 'rectangle':  
+            draw.rectangle(
+                xy=(
+                    element['position']['x'],
+                    element['position']['y'],
+                    element['position']['x'] + element['size'],
+                    element['position']['y'] + element['size']
+                ),
+                outline=element.get('color', "#000000"),
+                width=element.get('thickness', 1)
+            )
+        elif element['shape'] == 'line':
+            draw.line(
+                xy=(
+                    element['position']['start']['x'],
+                    element['position']['start']['y'],
+                    element['position']['end']['x'],
+                    element['position']['end']['y']
+                ),
+                fill=element.get('color', "#000000"),
+                width=element.get('thickness', 1)
+            )
+        else:
+            print(f"未対応の形状: {element['shape']}")
+            return image
+
+        if 'caption' in element:
+            shape_image = self._draw_caption(shape_image, element, text_font_path)
+
+        return Image.alpha_composite(image, shape_image)
+
+    def _draw_caption(self, image: Image.Image, element: dict, text_font_path: str) -> Image.Image:
+        # 透明な新規レイヤーを作成
+        caption_image = Image.new('RGBA', image.size, (255,255,255,0))
+        caption_draw = ImageDraw.Draw(caption_image)
+
+        cap = element['caption']
+        font_path = element.get('font_path', text_font_path)
+        font_size = element.get('font_size', 24)
+        cap_font = ImageFont.truetype(font_path, font_size)
+        caption_draw.text(
+            xy=(cap['position']['x'], cap['position']['y']),
+            text=cap['content'],
+            font=cap_font,
+            fill=cap['color']
+        )
+
+        return Image.alpha_composite(image, caption_image)
 
     def draw_arrow(
         self,
@@ -162,6 +212,8 @@ class Builder:
         for element in spec['elements']:
             if element['type'] == 'emoji':
                 image = self.draw_emoji(image, element, emoji_font_path, text_font_path)
+            elif element['type'] == 'shape':
+                image = self.draw_shapes(image, element, text_font_path)
             elif element['type'] == 'arrow':
                 image = self.draw_arrow(image, element, elements_dict)
             elif element['type'] == 'text':

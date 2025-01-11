@@ -54,3 +54,54 @@ image:
         y: 100
       font_size: 24
       color: "#000000"
+    - type: "shape"
+      id: "shape1"
+      shape: "circle"
+      position:
+        x: 400
+        y: 100
+      size: 100
+      color: "#FF0000"
+      thickness: 5
+      caption:
+        content: "円"
+        position:
+          x: 400
+          y: 200
+        font_size: 20
+        color: "#000000"
+    - type: "shape"
+      id: "shape2"
+      shape: "rectangle"
+      position:
+        x: 400
+        y: 300
+      size: 100
+      color: "#00FF00"
+      thickness: 2
+      caption:
+        content: "長方形"
+        position:
+          x: 400
+          y: 400
+        font_size: 20
+        color: "#000000"
+    - type: "shape"
+      id: "shape3"
+      shape: "line"
+      position:
+        start:
+          x: 380
+          y: 100
+        end:
+          x: 420
+          y: 500
+      color: "#0000FF"
+      thickness: 2
+      caption:
+        content: "線"
+        position:
+          x: 400
+          y: 500
+        font_size: 20
+        color: "#000000"
