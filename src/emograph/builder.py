@@ -82,8 +82,8 @@ class Builder:
                 xy=(
                     element['position']['x'],
                     element['position']['y'],
-                    element['position']['x'] + element['size'],
-                    element['position']['y'] + element['size']
+                    element['position']['x'] + element['size']['rx'],
+                    element['position']['y'] + element['size']['ry']
                 ),
                 outline=element.get('color', "#000000"),
                 width=element.get('thickness', 1)
@@ -93,8 +93,8 @@ class Builder:
                 xy=(
                     element['position']['x'],
                     element['position']['y'],
-                    element['position']['x'] + element['size'],
-                    element['position']['y'] + element['size']
+                    element['position']['x'] + element['size']['width'],
+                    element['position']['y'] + element['size']['height']
                 ),
                 outline=element.get('color', "#000000"),
                 width=element.get('thickness', 1)
