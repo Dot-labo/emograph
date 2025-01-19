@@ -1,111 +1,110 @@
-image:
-  width: 800
-  height: 600
-  background_color: "#FFFFFF"
-  text_font_path: "fonts/JKG-M_3.ttf"
-  emoji_font_path: "fonts/seguiemj.ttf"
-  elements:
-    - id: "emoji1"
-      type: "emoji"
-      emoji: "😊"
+width: 800
+height: 600
+background_color: "#FFFFFF"
+text_font_path: "fonts/JKG-M_3.ttf"
+emoji_font_path: "fonts/seguiemj.ttf"
+elements:
+  - id: "emoji1"
+    type: "emoji"
+    emoji: "😊"
+    position:
+      x: 100
+      y: 150
+    size: 256
+    rotation: 109
+    caption:
+      content: "笑顔"
       position:
         x: 100
-        y: 150
-      size: 256
-      rotation: 109
-      caption:
-        content: "笑顔"
-        position:
-          x: 100
-          y: 220
-        font_size: 20
-        color: "#000000"
-    - id: "emoji2"
-      type: "emoji"
-      emoji: "🚀"
+        y: 220
+      font_size: 20
+      color: "#000000"
+  - id: "emoji2"
+    type: "emoji"
+    emoji: "🚀"
+    position:
+      x: 300
+      y: 200
+    size: 128
+    rotation: 45
+    caption:
+      content: "ロケット"
       position:
         x: 300
-        y: 200
-      size: 128
-      rotation: 45
-      caption:
-        content: "ロケット"
-        position:
-          x: 300
-          y: 270
-        font_size: 16
-        color: "#000000"
-    - type: "arrow"
-      start_id: "emoji1"
-      end_id: "emoji2"
-      color: "#FF0000"
-      position:
-        start:
-          x: 100
-          y: 150
-        end:
-          x: 300
-          y: 200
-      thickness: 5
-    - type: "text"
-      content: "理解を助けるために"
-      position:
-        x: 400
-        y: 100
-      font_size: 24
+        y: 270
+      font_size: 16
       color: "#000000"
-    - type: "shape"
-      id: "shape1"
-      shape: "circle"
+  - type: "arrow"
+    start_id: "emoji1"
+    end_id: "emoji2"
+    color: "#FF0000"
+    thickness: 5
+    position:
+      start:
+        x: 100
+        y: 150
+      end:
+        x: 300
+        y: 200
+  - type: "text"
+    content: "理解を助けるために"
+    position:
+      x: 400
+      y: 100
+    font_size: 24
+    color: "#000000"
+  - type: "shape"
+    id: "shape1"
+    shape: "circle"
+    position:
+      x: 400
+      y: 100
+    size:
+      rx: 100
+      ry: 50
+    color: "#FF0000"
+    thickness: 5
+    caption:
+      content: "円"
       position:
         x: 400
+        y: 150
+      font_size: 20
+      color: "#000000"
+  - type: "shape"
+    id: "shape2"
+    shape: "rectangle"
+    position:
+      x: 400
+      y: 300
+    size:
+      width: 100
+      height: 50
+    color: "#00FF00"
+    thickness: 2
+    caption:
+      content: "長方形"
+      position:
+        x: 400
+        y: 350
+      font_size: 20
+      color: "#000000"
+  - type: "shape"
+    id: "shape3"
+    shape: "line"
+    position:
+      start:
+        x: 380
         y: 100
-      size:
-        rx: 100
-        ry: 50
-      color: "#FF0000"
-      thickness: 5
-      caption:
-        content: "円"
-        position:
-          x: 400
-          y: 150
-        font_size: 20
-        color: "#000000"
-    - type: "shape"
-      id: "shape2"
-      shape: "rectangle"
+      end:
+        x: 420
+        y: 500
+    color: "#0000FF"
+    thickness: 2
+    caption:
+      content: "線"
       position:
         x: 400
-        y: 300
-      size:
-        width: 100
-        height: 50
-      color: "#00FF00"
-      thickness: 2
-      caption:
-        content: "長方形"
-        position:
-          x: 400
-          y: 350
-        font_size: 20
-        color: "#000000"
-    - type: "shape"
-      id: "shape3"
-      shape: "line"
-      position:
-        start:
-          x: 380
-          y: 100
-        end:
-          x: 420
-          y: 500
-      color: "#0000FF"
-      thickness: 2
-      caption:
-        content: "線"
-        position:
-          x: 400
-          y: 500
-        font_size: 20
-        color: "#000000"
+        y: 500
+      font_size: 20
+      color: "#000000"

@@ -3,7 +3,8 @@ import math
 import yaml
 from PIL import Image, ImageDraw, ImageFont
 import emoji
-from .fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
+from src.emograph.fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
+from src.emograph.utils import remove_null_values
 
 
 class Builder:
@@ -203,8 +204,12 @@ class Builder:
         return Image.alpha_composite(image, text_image)
 
     def generate_image(self, yaml_data: dict, output_path: str) -> None:
-        spec = yaml_data['image']
-        image = Image.new('RGBA', (spec['width'], spec['height']), spec.get('background_color', "#FFFFFF"))
+        spec = remove_null_values(yaml_data)
+        image = Image.new(
+            mode='RGBA',
+            size=(spec['width'], spec['height']),
+            color=spec.get('background_color', "#FFFFFF")
+        )
         text_font_path = spec.get('text_font_path', DEFAULT_FONT_PATH)
         emoji_font_path = spec.get('emoji_font_path', DEFAULT_EMOJI_FONT_PATH)
         elements_dict = {e['id']: e for e in spec['elements'] if 'id' in e}
