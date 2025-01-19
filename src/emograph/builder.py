@@ -203,7 +203,7 @@ class Builder:
 
         return Image.alpha_composite(image, text_image)
 
-    def generate_image(self, yaml_data: dict, output_path: str) -> None:
+    def get_generate_image(self, yaml_data: dict) -> Image.Image:
         spec = remove_null_values(yaml_data)
         image = Image.new(
             mode='RGBA',
@@ -226,4 +226,8 @@ class Builder:
             else:
                 print(f"未対応の要素タイプ: {element['type']}")
 
+        return image
+
+    def save_generate_image(self, yaml_data: dict, output_path: str) -> None:
+        image =self.get_generate_image(yaml_data)
         image.convert("RGB").save(output_path, "PNG")

@@ -12,7 +12,7 @@ def main(yaml_file: str, output_image_name: str, output_dir = "./"):
 
     yaml_data = builder.load_yaml(yaml_file)
     output_path = os.path.join(output_dir, output_image_name)
-    builder.generate_image(yaml_data, output_path)
+    builder.save_generate_image(yaml_data, output_path)
 
 
 if __name__ == "__main__":
