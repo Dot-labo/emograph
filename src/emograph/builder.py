@@ -3,8 +3,8 @@ import math
 import yaml
 from PIL import Image, ImageDraw, ImageFont
 import emoji
-from src.emograph.fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
-from src.emograph.utils import remove_null_values
+from .fonts import DEFAULT_FONT_PATH, DEFAULT_EMOJI_FONT_PATH
+from .utils import remove_null_values
 
 
 class Builder:
