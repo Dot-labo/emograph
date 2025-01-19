@@ -27,5 +27,5 @@
 
   ```bash
   cd example
-  uv run example/main.py --config=config_example.yml --output-name=output.png
+  uv run main.py --config=config_example.yml --output-name=output.png
   ```
