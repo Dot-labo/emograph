@@ -21,7 +21,7 @@ class Builder:
         # 透明な新規レイヤーを作成
         text_image = Image.new('RGBA', image.size, (255,255,255,0))
         text_draw = ImageDraw.Draw(text_image)
-        
+
         emj = emoji.emojize(element['emoji'])
         x, y = element['position']['x'], element['position']['y']
         font_path = element.get('font_path', emoji_font_path)
@@ -35,6 +35,7 @@ class Builder:
         text_width = bbox[2] - bbox[0]
         text_height = bbox[3] - bbox[1]
 
+        # TODO: 現状計算が正しくない
         if rotation:
             diagonal = math.sqrt(text_width**2 + text_height**2)
             rotated_image = Image.new('RGBA', (int(diagonal), int(diagonal)), (255, 255, 255, 0))
