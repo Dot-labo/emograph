@@ -1,4 +1,3 @@
-import os
 import math
 import yaml
 from PIL import Image, ImageDraw, ImageFont
@@ -70,7 +69,7 @@ class Builder:
 
         # キャプションがあれば追加
         if 'caption' in element:
-            result = self._draw_caption(result, element, text_font_path)
+            result = self.draw_text(result, element['caption'], text_font_path)
 
         return result
 
@@ -116,27 +115,9 @@ class Builder:
             return image
 
         if 'caption' in element:
-            shape_image = self._draw_caption(shape_image, element, text_font_path)
+            shape_image = self.draw_text(shape_image, element['caption'], text_font_path)
 
         return Image.alpha_composite(image, shape_image)
-
-    def _draw_caption(self, image: Image.Image, element: dict, text_font_path: str) -> Image.Image:
-        # 透明な新規レイヤーを作成
-        caption_image = Image.new('RGBA', image.size, (255,255,255,0))
-        caption_draw = ImageDraw.Draw(caption_image)
-
-        cap = element['caption']
-        font_path = element.get('font_path', text_font_path)
-        font_size = element.get('font_size', 24)
-        cap_font = ImageFont.truetype(font_path, font_size)
-        caption_draw.text(
-            xy=(cap['position']['x'], cap['position']['y']),
-            text=cap['content'],
-            font=cap_font,
-            fill=cap['color']
-        )
-
-        return Image.alpha_composite(image, caption_image)
 
     def draw_arrow(
         self,
