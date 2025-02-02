@@ -1,7 +1,5 @@
 import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from src.emograph import Builder
+from emograph import Builder
 
 
 def main(yaml_file: str, output_image_name: str, output_dir = "./"):
