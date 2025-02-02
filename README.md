@@ -5,27 +5,23 @@
 ## 利用方法
 
   ```bash
-  pip install git+https://github.com/Dot-labo/emograph.git
+  poetry add git+https://github.com/Dot-labo/emograph.git
   ```
 
 ## 開発環境設定
 
-* uvをインストール
-  * macOSの場合
-
-    ```bash
-    brew install uv
-    ```
+* poetry(2.0以上)をインストール
 
 * ライブラリをインストール
 
   ```bash
-  uv sync
-   ```
+  poetry env use python3
+  poetry install
+  ```
 
 ## デコード例の実行方法
 
   ```bash
   cd example
-  uv run main.py --config=config_example.yml --output-name=output.png
+  poetry run python main.py --config=config_example.yml --output-name=output.png
   ```
